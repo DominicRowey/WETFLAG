@@ -68,7 +68,7 @@ function getLorazepam(weight)
 
 function getAdrenaline(weight){
     //returns in ml for a 1:10,000 solution
-    var adrenaline = round( 0.1 * weight, 2);
+    var adrenaline = round( 0.1 * weight, 1);
     return adrenaline;
 }
 
