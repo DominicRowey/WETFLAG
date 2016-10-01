@@ -44,8 +44,8 @@
                             <div class="col-md-6"><span id="fluids">x</span> mls</div>
                         </div>
                         <div class="row step">
-                            <div class="col-md-6">Lorazapam</div>
-                            <div class="col-md-6"><span id="lorazapam">x</span> mg</div>
+                            <div class="col-md-6">Lorazepam</div>
+                            <div class="col-md-6"><span id="lorazepam">x</span> mg</div>
                         </div>
                         <div class="row step">
                             <div class="col-md-6">Adrenaline</div>
@@ -129,7 +129,7 @@
             $('#energy').text("3");
             $('#tube').text("4");
             $('#fluids').text("5");
-            $('#lorazapam').text("6");
+            $('#lorazepam').text("6");
             $('#adrenaline').text("7");
             $('#glucose').text("8");
 
@@ -137,6 +137,7 @@
                 format: '%H:%M:%S'  //Display time as 0:0:0
             });
 
+            updateWETFLAG();
         </script>
     </body>
 </html>
