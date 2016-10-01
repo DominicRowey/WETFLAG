@@ -8,11 +8,12 @@
             <div id="timer-bar" class="row">
                 <div class="col-md-3">
                     <span id="time">00:00:00</span>
+                    <!--<div class="stopwatch"></div>-->
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary" id="timer-start">Start</button>
-                    <button class="btn btn-primary" id="timer-stop">Stop</button>
-                    <button class="btn btn-primary" id="timer-reset">Reset</button>
+                    <button class="btn btn-primary" id="timer-start" onClick="stopwatch.start();">Start</button>
+                    <button class="btn btn-primary" id="timer-stop"  onClick="stopwatch.stop();">Stop</button>
+                    <button class="btn btn-primary" id="timer-reset" onClick="stopwatch.restart();">Reset</button>
                 </div>
                 <div class="col-md-6">
                     Age <span id="age">unknown</span>
@@ -84,6 +85,7 @@
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>       
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="timer.jquery.min.js"></script>
+        <!--<script src="timer2.js"></script>-->
         <script src="../WetflagCalculations.js"></script>
 
         <script>
@@ -133,8 +135,15 @@
             $('#adrenaline').text("7");
             $('#glucose').text("8");
 
-            $('#time').timer({
+
+            $('#timer-start').click(function(){
+                $('#time').timer({
                 format: '%H:%M:%S'  //Display time as 0:0:0
+                });
+            });
+
+            $('#timer-stop').click(function(){
+                $('#time').timer('pause');
             });
 
             updateWETFLAG();
