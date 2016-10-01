@@ -1,0 +1,17 @@
+AGE,WEIGHT,APPROX,SPARC,WEIGHT
+Newborn,3.5kg,3.5kg
+1 month,4.5kg,5kg
+3 months,5.5kg,5kg
+6 months,7kg,7.5kg
+1 year,10kg,10kg
+2 year,12kg,10kg
+3 year,14kg,15kg
+4 year,16kg,15kg
+5 year,18kg,20kg
+6 year,25kg,25kg
+7 year,28kg,30kg
+8 year,31kg,30kg
+9 year,34kg,35kg
+10 year,37kg,35kg
+11 year,40kg,40kg
+12 year,43kg,45kg
