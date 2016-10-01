@@ -26,7 +26,7 @@ function round(value, decimals) {
 function getEnergy(weight)
 {
     //energy in 
-    var energy = 4*weight;
+    var energy = Math.ceil( 4*weight );
     return energy;
 }
 
@@ -47,33 +47,26 @@ function getTube(age)
 function getFluids(weight)
 {
     //returns in ml
-    var fluids = 20 * weight;
+    var fluids = Math.ceil( 20 * weight);
     return fluids;
 }
 
 function getLorazepam(weight)
 {
     //returns in mg
-    var lorazepam =  0.1 * weight;
-
-    // rounds dose up to nearest 0.025
-    if ( lorazepam % 0.025 != 0)
-    {
-        lorazepam = Math.ceil( lorazepam * 40) / 40;
-    }
-
+    var lorazepam = round(  0.1 * weight, 1);
 
     return lorazepam;
 }
 
 function getAdrenaline(weight){
     //returns in ml for a 1:10,000 solution
-    var adrenaline = round( 0.1 * weight, 2);
+    var adrenaline = round( 0.1 * weight, 1);
     return adrenaline;
 }
 
 function getGlucose(weight){
     //returns in ml
-    var glucose = weight * 2;
+    var glucose = Math.ceil(weight * 2);
     return glucose;
 }
