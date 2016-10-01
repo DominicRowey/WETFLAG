@@ -1,5 +1,15 @@
 
 
+function updateWETFLAG(weight, age)
+{
+    getEnergy(weight);
+    getTube(age);
+    getFluids(weight);
+    getLorazepam(weight);
+    getAdrenaline(weight);
+    getGlucose(weight);
+}
+
 function getEnergy(weight)
 {
     //energy in 
