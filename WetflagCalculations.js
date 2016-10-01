@@ -2,12 +2,12 @@
 
 function updateWETFLAG(weight, age)
 {
-    getEnergy(weight);
-    getTube(age);
-    getFluids(weight);
-    getLorazepam(weight);
-    getAdrenaline(weight);
-    getGlucose(weight);
+    var energy = getEnergy(weight);
+    var tube = getTube(age);
+    var fluids = getFluids(weight);
+    var lorazepam = getLorazepam(weight);
+    var adrenaline = getAdrenaline(weight);
+    var glucose = getGlucose(weight);
 }
 
 function getEnergy(weight)
