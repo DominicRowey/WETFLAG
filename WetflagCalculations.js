@@ -7,9 +7,10 @@ function updateWETFLAG()
 
     var weight = document.getElementById("weight").textContent;
     var age = document.getElementById("age").textContent;
+    
     document.getElementById("energy").textContent = getEnergy(weight);
 
-    document.getElementById("age").textContent = getTube(age);
+    document.getElementById("tube").textContent = getTube(age);
 
     document.getElementById("fluids").textContent = getFluids(weight);
     document.getElementById("lorazepam").textContent = getLorazepam(weight);
