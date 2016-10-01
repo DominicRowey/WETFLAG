@@ -7,15 +7,19 @@ function updateWETFLAG()
 
     var weight = document.getElementById("weight").textContent;
     var age = document.getElementById("age").textContent;
-    
+
     document.getElementById("energy").textContent = getEnergy(weight);
 
     document.getElementById("tube").textContent = getTube(age);
 
     document.getElementById("fluids").textContent = getFluids(weight);
-    document.getElementById("lorazepam").textContent = getLorazepam(weight);
-    document.getElementById("adrenaline").textContent = getAdrenaline(weight);
+    document.getElementById("lorazepam").textContent = round(getLorazepam(weight),2);
+    document.getElementById("adrenaline").textContent = round(getAdrenaline(weight),2);
     document.getElementById("glucose").textContent = getGlucose(weight);
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
 
 function getEnergy(weight)
