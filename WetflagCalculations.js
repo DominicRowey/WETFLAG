@@ -2,12 +2,12 @@
 
 function updateWETFLAG(weight, age)
 {
-    getEnergy(weight);
-    getTube(age);
-    getFluids(weight);
-    getLorazepam(weight);
-    getAdrenaline(weight);
-    getGlucose(weight);
+    var energy = getEnergy(weight);
+    var tube = getTube(age);
+    var fluids = getFluids(weight);
+    var lorazepam = getLorazepam(weight);
+    var adrenaline = getAdrenaline(weight);
+    var glucose = getGlucose(weight);
 }
 
 function getEnergy(weight)
@@ -22,6 +22,11 @@ function getTube(age)
 {
     //in mm, needs to round up to nearest 0.5
     var tube = (age / 4) + 4;
+
+    if ( tube % 0.5 != 0 ) //
+    {
+        tube = Math.ceil( tube * 2 ) / 2;
+    }
     return tube;
 }
 
