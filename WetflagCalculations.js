@@ -1,13 +1,20 @@
 
 
-function updateWETFLAG(weight, age)
+function updateWETFLAG()
 {
-    var energy = getEnergy(weight);
-    var tube = getTube(age);
-    var fluids = getFluids(weight);
-    var lorazepam = getLorazepam(weight);
-    var adrenaline = getAdrenaline(weight);
-    var glucose = getGlucose(weight);
+    //call each of the functions to calculate WetFLAG values
+    // and updates the page
+
+    var weight = document.getElementById("weight").textContent;
+    var age = document.getElementById("age").textContent;
+    document.getElementById("energy").textContent = getEnergy(weight);
+
+    document.getElementById("age").textContent = getTube(age);
+    
+    document.getElementById("energy").textContent = getFluids(weight);
+    document.getElementById("energy").textContent = getLorazepam(weight);
+    document.getElementById("energy").textContent = getAdrenaline(weight);
+    document.getElementById("energy").textContent = getGlucose(weight);
 }
 
 function getEnergy(weight)
@@ -23,7 +30,7 @@ function getTube(age)
     //in mm, needs to round up to nearest 0.5
     var tube = (age / 4) + 4;
 
-    if ( tube % 0.5 != 0 ) //
+    if ( tube % 0.5 != 0 ) //hack-y way to round up to nearest 0.5
     {
         tube = Math.ceil( tube * 2 ) / 2;
     }
