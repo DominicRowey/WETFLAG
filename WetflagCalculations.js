@@ -54,14 +54,7 @@ function getFluids(weight)
 function getLorazepam(weight)
 {
     //returns in mg
-    var lorazepam =  0.1 * weight;
-
-    // rounds dose up to nearest 0.025
-    if ( lorazepam % 0.025 != 0)
-    {
-        lorazepam = Math.ceil( lorazepam * 40) / 40;
-    }
-
+    var lorazepam = round(  0.1 * weight, 1);
 
     return lorazepam;
 }
