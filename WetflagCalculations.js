@@ -10,11 +10,11 @@ function updateWETFLAG()
     document.getElementById("energy").textContent = getEnergy(weight);
 
     document.getElementById("age").textContent = getTube(age);
-    
-    document.getElementById("energy").textContent = getFluids(weight);
-    document.getElementById("energy").textContent = getLorazepam(weight);
-    document.getElementById("energy").textContent = getAdrenaline(weight);
-    document.getElementById("energy").textContent = getGlucose(weight);
+
+    document.getElementById("fluids").textContent = getFluids(weight);
+    document.getElementById("lorazepam").textContent = getLorazepam(weight);
+    document.getElementById("adrenaline").textContent = getAdrenaline(weight);
+    document.getElementById("glucose").textContent = getGlucose(weight);
 }
 
 function getEnergy(weight)
