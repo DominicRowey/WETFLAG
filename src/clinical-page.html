@@ -1,58 +1,91 @@
 <html>
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="./wetflag.css" rel="stylesheet">
     </head>
     <body>
-
         <div class="container">
-            <div class="row">
+            <div id="timer-bar" class="row">
                 <div class="col-md-2">
                     00:00:00
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Age</div>
-                            <div class="col-md-6"><span id="age">x</span> years</div>
+                            <div class="col-md-6"><span id="age">1</span> Yrs
+                            </div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Weight</div>
-                            <div class="col-md-6"><span id="weight">x</span> kg</div>
+                            <div class="col-md-5">
+                                <span id="weight">4</span> Kg
+                            </div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Energy</div>
                             <div class="col-md-6"><span id="energy">x</span> J</div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Tube</div>
                             <div class="col-md-6"><span id="tube">x</span> mm</div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Fluids</div>
                             <div class="col-md-6"><span id="fluids">x</span> mls</div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Lorazapam</div>
                             <div class="col-md-6"><span id="lorazapam">x</span> mg</div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Adrenaline</div>
                             <div class="col-md-6"><span id="adrenaline">x</span> ml</div>
                         </div>
-                        <div class="row">
+                        <div class="row step">
                             <div class="col-md-6">Glucose</div>
                             <div class="col-md-6"><span id="glucose">x</span> ml</div>
                         </div>
                 </div>
                 <div class="col-md-6">
-                    SPECIALITY BUTTONS
+                    <a href="#">
+                        <div class="col-md-4 tile">
+                            tile 1
+                        </div>
+                        <div class="col-md-4 tile">
+                            tile 2
+                        </div>
+                        <div class="col-md-4 tile">
+                            tile 3
+                        </div>
+                        <div class="col-md-4 tile">
+                            tile 4
+                        </div>
+                        <div class="col-md-4 tile">
+                            tile 5
+                        </div>
+                        <div class="col-md-4 tile">
+                            tile 6
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-        
+
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="../WetflagCalculations.js"></script>
+
+        <script>
+            $('#age').text("1");
+            $('#weight').text("2");
+            $('#energy').text("3");
+            $('#tube').text("4");
+            $('#fluids').text("5");
+            $('#lorazapam').text("6");
+            $('#adrenaline').text("7");
+            $('#glucose').text("8");
+        </script>
     </body>
 </html>
