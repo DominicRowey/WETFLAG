@@ -26,7 +26,7 @@ function round(value, decimals) {
 function getEnergy(weight)
 {
     //energy in 
-    var energy = 4*weight;
+    var energy = Math.ceil( 4*weight );
     return energy;
 }
 
@@ -47,7 +47,7 @@ function getTube(age)
 function getFluids(weight)
 {
     //returns in ml
-    var fluids = 20 * weight;
+    var fluids = Math.ceil( 20 * weight);
     return fluids;
 }
 
@@ -67,6 +67,6 @@ function getAdrenaline(weight){
 
 function getGlucose(weight){
     //returns in ml
-    var glucose = weight * 2;
+    var glucose = Math.ceil(weight * 2);
     return glucose;
 }
