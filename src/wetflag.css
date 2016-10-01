@@ -9,4 +9,7 @@
 
 .tile {
     height: 100px;
+    background-color: cadetblue;
+    padding: 5px;
+    margin: 5px;
 }
