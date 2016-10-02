@@ -1,4 +1,4 @@
-AGE,WEIGHT,APPROX,SPARC,WEIGHT,COLOUR
+AGE,WEIGHT,APPROX_SPARC_WEIGHT,COLOUR
 Newborn,3.5kg,3.5kg,brown
 1 month,4.5kg,5kg,red
 3 months,5.5kg,5kg,red
