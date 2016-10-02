@@ -135,19 +135,21 @@
             function closest(num, arr){
                 var current = arr[0]
                 for (i = 1; i < arr.length; i++) {
-                    var val = arr[i]
-                    if Math.abs (num - val) < Math.abs (num - current){
-                        current = val
+                    var val = arr[i];
+                    var currdiff = Math.abs(num - current);
+                    var valdiff = Math.abs(num-val);
+                    if ( valdiff < currdiff){
+                        current = val;
                     }
                 }
-                return current
+                return current;
             }
 
             var weight = document.getElementById("weight").textContent;
 
-            var weightcategories =  [00000, 03500, 05000, 07500, 01000, 01500, 20000, 25000, 30000, 35000, 40000, 45000];
+            var weightcategories =  [ "00000", "03500", "05000", "07500", "01000", "01500", "20000", "25000", "30000", "35000", "40000", "45000"];
 
-            var chosenweight = closest(weight*1000, weightcategories)
+            var chosenweight = closest(weight*1000, weightcategories);
 
             var newURL = "../SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
             
