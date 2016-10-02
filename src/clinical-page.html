@@ -104,7 +104,7 @@
                 }
                 else
                 {
-                    $('#weight').text(5);
+                    $('#weight').text("");
                 }
 
             $('#energy').text("3");
@@ -127,7 +127,7 @@
 
 
             function changeData(newURL) {
-                if(!document.getElementById("carepdf")) 
+                if(!document.getElementById("carepdf"))
                     return false;
                 document.getElementById("carepdf").setAttribute('data', newURL);
             }
@@ -145,17 +145,13 @@
                 return current;
             }
 
-            var weight = document.getElementById("weight").textContent;
-
-            var weightcategories =  [ "00000", "03500", "05000", "07500", "10000", "15000", "20000", "25000", "30000", "35000", "40000", "45000"];
-
-            var chosenweight = closest(weight*1000, weightcategories);
-
-            var newURL = "../SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
-
             updateWETFLAG();
+            var weight = document.getElementById("weight").textContent;
+            var weightcategories =  [ "00000", "03500", "05000", "07500", "10000", "15000", "20000", "25000", "30000", "35000", "40000", "45000"];
+            var chosenweight = closest(weight*1000, weightcategories);
+            var newURL = "../SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
+            changeData(newURL);
 
-            window.onload(changeData(newURL));
         </script>
     </body>
 </html>
