@@ -6,6 +6,9 @@
     <body>
         <div class="container-fluid">
             <div id="timer-bar" class="row">
+                <div class="col-md-6">
+                    Age <span id="age">unknown</span>
+                </div>
                 <div class="col-md-3">
                     <span id="time">00:00:00</span>
                     <!--<div class="stopwatch"></div>-->
@@ -14,9 +17,6 @@
                     <button class="btn btn-primary" id="timer-start" onClick="stopwatch.start();">Start</button>
                     <button class="btn btn-primary" id="timer-stop"  onClick="stopwatch.stop();">Stop</button>
                     <button class="btn btn-primary" id="timer-reset" onClick="stopwatch.restart();">Reset</button>
-                </div>
-                <div class="col-md-6">
-                    Age <span id="age">unknown</span>
                 </div>
             </div>
             <div class="row">
