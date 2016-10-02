@@ -5,8 +5,13 @@ function updateWETFLAG()
     //call each of the functions to calculate WetFLAG values
     // and updates the page
 
-    var weight = document.getElementById("weight").textContent;
     var age = document.getElementById("age").textContent;
+    var weight = document.getElementById("weight").textContent;
+    if (weight == "") {
+      weight = getWeight(age);
+    }
+
+    document.getElementById("weight").textContent = weight;
 
     document.getElementById("energy").textContent = getEnergy(weight);
 
@@ -18,6 +23,32 @@ function updateWETFLAG()
     document.getElementById("glucose").textContent = getGlucose(weight);
 }
 
+// using the ( age + 4 ) * 2 algorithm for now (ie the simplest version)
+function getWeight(age) {
+  console.log(age);
+  var weight;
+
+  if (age == 0) {
+    weight = 3.5;
+    return weight;
+  }
+
+  else if (age < 1) {
+    age=age*12 //to age in months
+    weight = (0.5 * age) + 4;
+    return weight;
+  }
+
+  else if (age <= 5) {
+    weight = (2 * age) + 8;
+  }
+  else {
+    weight = (3 * age) + 7;
+  }
+  console.log(age,weight);
+  return Math.round(weight);
+}
+
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
@@ -25,7 +56,7 @@ function round(value, decimals) {
 
 function getEnergy(weight)
 {
-    //energy in 
+    //energy in
     var energy = Math.ceil( 4*weight );
     return energy;
 }
