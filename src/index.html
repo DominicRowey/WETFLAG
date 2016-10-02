@@ -1,10 +1,82 @@
 <html>
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="wetflag.css">
     </head>
     <body>
-
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    Application Title
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Please Select an Age Group
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a id="age-group-button-1" class="btn btn-primary btn-lg" href="#">0-2</a>
+                    <a id="age-group-button-2" class="btn btn-primary btn-lg" href="#">3-5</a>
+                    <a id="age-group-button-3" class="btn btn-primary btn-lg" href="#">6-8</a>
+                </div>
+            </div>
+            <div id="age-group-1" class="row age-group active">
+                <div class="col-md-12">
+                    <a class="btn btn-primary btn-lg" href="#" data-value="0">0</a>
+                    <a class="btn btn-primary btn-lg" href="#" data-value="1">1</a>
+                    <a class="btn btn-primary btn-lg" href="#" data-value="2">2</a>
+                </div>
+            </div>
+            <div id="age-group-2" class="row age-group">
+                <div class="col-md-12">
+                    <a class="btn btn-primary btn-lg" href="#" data-value="3">3</a>
+                    <a class="btn btn-primary btn-lg" href="#" data-value="4">4</a>
+                    <a class="btn btn-primary btn-lg" href="#" data-value="5">5</a>
+                </div>
+            </div>
+            <div id="age-group-3" class="row age-group">
+                <div class="col-md-12">
+                    <a class="btn btn-primary btn-lg" href="#" data-value="6">6</a>
+                    <a class="btn btn-primary btn-lg" href="#" data-value="7">7</a>
+                    <a class="btn btn-primary btn-lg" href="#" data-value="8">8</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a id="view-details-btn" class="btn btn-primary btn-lg" href="#">View Details</a>
+                </div>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script>
+
+            var age = 'not-set';
+
+            $('#age-group-button-1').click(function () {
+                $('.age-group').removeClass('active');
+                $('#age-group-1').addClass('active');
+            });
+
+            $('#age-group-button-2').click(function () {
+                $('.age-group').removeClass('active');
+                $('#age-group-2').addClass('active');
+            });
+
+            $('#age-group-button-3').click(function () {
+                $('.age-group').removeClass('active');
+                $('#age-group-3').addClass('active');
+            });
+
+            $('.age-group a').click(function (e) {
+                age = $(this).data('value');
+            });
+
+            $('#view-details-btn').click(function () {
+                window.location = '/src/clinical-page.html?age=' + age;
+            });
+        </script>
     </body>
 </html>
