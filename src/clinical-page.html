@@ -133,26 +133,26 @@
                 document.getElementById("carepdf").setAttribute('data', newURL);
             }
 
-            var weight = document.getElementById("weight").textContent;
-
-            var weightcategories =  [00000, 03500, 05000, 07500, 01000, 01500, 20000, 25000, 30000, 35000, 40000, 45000];
-
             function closest(number, arr){
                 var current = arr[0]
                 for (i = 1; i < arr.length; i++) {
                     var val = arr[i]
-                    if abs (num - val) < abs (num - current){
+                    if Math.abs (num - val) < Math.abs (num - current){
                         current = val
                     }
                 }
                 return current
             }
 
+            var weight = document.getElementById("weight").textContent;
+
+            var weightcategories =  [00000, 03500, 05000, 07500, 01000, 01500, 20000, 25000, 30000, 35000, 40000, 45000];
+
             var chosenweight = closest(weight*1000, weightcategories)
 
             var newURL = "../SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
 
-            window.onload = changeData();
+            window.onload = changeData(newURL);
         </script>
     </body>
 </html>
