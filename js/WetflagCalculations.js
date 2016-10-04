@@ -12,11 +12,8 @@ function updateWETFLAG()
     }
 
     document.getElementById("weight").textContent = weight;
-
     document.getElementById("energy").textContent = getEnergy(weight);
-
     document.getElementById("tube").textContent = getTube(age);
-
     document.getElementById("fluids").textContent = getFluids(weight);
     document.getElementById("lorazepam").textContent = getLorazepam(weight);
     document.getElementById("adrenaline").textContent = getAdrenaline(weight);
@@ -25,7 +22,6 @@ function updateWETFLAG()
 
 // using the ( age + 4 ) * 2 algorithm for now (ie the simplest version)
 function getWeight(age) {
-  console.log(age);
   var weight;
 
   if (age == 0) {
@@ -45,7 +41,6 @@ function getWeight(age) {
   else {
     weight = (3 * age) + 7;
   }
-  console.log(age,weight);
   return Math.round(weight);
 }
 
