@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html>
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -68,10 +70,8 @@
                         <div class="col-md-6"><span id="glucose">x</span> ml</div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <object data="data/SPARCsplit/00000g-wetflag.pdf" type="application/pdf" width="100%" height="100%" id="carepdf">
-                        <p> <a href="data/SPARCsplit/00000g-wetflag.pdf">Care PDF</a></p>
-                    </object>
+                <div class="col-md-7" >
+                    <div id="carepdf" style="height:800px"></div>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
         <script src="js/timer.jquery.min.js"></script>
         <!--<script src="timer2.js"></script>-->
         <script src="js/WetflagCalculations.js"></script>
-
+        <script src="js/pdfobject.min.js"></script>
         <script>
                 // Taken on 01/10/2016 from
                 // http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
@@ -141,10 +141,16 @@
             });
 
 
-            function changeData(newURL) {
-                if(!document.getElementById("carepdf"))
+            function changeData(newUrl) {
+                if(!document.getElementById("carePdfObject"))
                     return false;
-                document.getElementById("carepdf").setAttribute('data', newURL);
+
+                var pdfObject = document.getElementById("carePdfObject");
+                pdfObject.setAttribute('data', newUrl);
+
+                pdfObject.outerHTML.replace(/data="(.+?)"/, 'data="' + newUrl + '"');
+
+                //pdfObject.setAttribute('src', newUrl);
             }
 
             function closest(num, arr){
@@ -164,8 +170,12 @@
             var weight = document.getElementById("weight").textContent;
             var weightcategories =  [ "00000", "03500", "05000", "07500", "10000", "15000", "20000", "25000", "30000", "35000", "40000", "45000"];
             var chosenweight = closest(weight*1000, weightcategories);
-            var newURL = "data/SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
-            changeData(newURL);
+            var newUrl = "data/SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
+            window.onload = changeData(newUrl);
+
+
+            PDFObject.embed(newUrl, "#carepdf");
+
 
         </script>
     </body>
