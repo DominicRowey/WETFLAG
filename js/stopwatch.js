@@ -1,3 +1,5 @@
+// modified from https://github.com/NgocSang/Seminar
+
 class Stopwatch {
     constructor(display, results) {
         this.running = false;
