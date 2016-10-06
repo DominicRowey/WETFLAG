@@ -22,14 +22,14 @@
                 <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-6">
-                          <span id="time">00:00:00</span>
-                          <!--<div class="stopwatch"></div>-->
+		                    <div class="stopwatch"></div>
+		                    <ul class="results"></ul>
                         </div>
 
                         <div class="col-md-6">
-                            <button class="btn btn-primary" id="timer-start" onClick="stopwatch.start();">Start</button>
-                            <button class="btn btn-primary" id="timer-stop"  onClick="stopwatch.stop();">Stop</button>
-                            <button class="btn btn-primary" id="timer-reset" onClick="stopwatch.restart();">Reset</button>
+                            <button class="btn btn-primary" id="start"  onClick="stopwatch.start();">Start</button>
+                            <button class="btn btn-primary" id="pause"   onClick="stopwatch.stop();" >Pause</button>
+                            <button class="btn btn-primary" id="restart"  onClick="stopwatch.restart();">Reset</button>
                         </div>
                     </div>
                 </div>
@@ -78,8 +78,8 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="js/timer.jquery.min.js"></script>
-        <!--<script src="timer2.js"></script>-->
+        <!--<script src="js/timer.jquery.min.js"></script>-->
+        <script src="js/stopwatch.js"></script>
         <script src="js/WetflagCalculations.js"></script>
 
         <script>
@@ -128,18 +128,6 @@
             $('#lorazepam').text("6");
             $('#adrenaline').text("7");
             $('#glucose').text("8");
-
-
-            $('#timer-start').click(function(){
-                $('#time').timer({
-                format: '%H:%M:%S'  //Display time as 00:00:00
-                });
-            });
-
-            $('#timer-stop').click(function(){
-                $('#time').timer('pause');
-            });
-
 
             function changeData(newURL) {
                 if(!document.getElementById("carepdf"))
