@@ -7,22 +7,9 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div id="timer-bar" class="row">
-
-                <div class="col-md-5">
-                    <div class="row">
-                        <div class="col-md-6">
-                          Age <span id="age">unknown</span>
-                        </div>
-
-                        <div class="col-md-6">
-                            years
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-7">
-                    <div class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row step">
                         <div class="col-md-6">
                           <span id="time">00:00:00</span>
                           <!--<div class="stopwatch"></div>-->
@@ -34,11 +21,16 @@
                             <button class="btn btn-primary" id="timer-reset" onClick="stopwatch.restart();">Reset</button>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-5">
+
+                    <div class="row step">
+                        <div class="col-md-6">Age</div>
+                        <div class="col-md-6">
+                            <span id="age">unknown</span> Years
+                        </div>
+                    </div>
+
+
                     <div class="row step">
                         <div class="col-md-6">Weight</div>
                         <div class="col-md-6">
@@ -70,7 +62,7 @@
                         <div class="col-md-6"><span id="glucose">x</span> ml</div>
                     </div>
                 </div>
-                <div class="col-md-7" >
+                <div class="col-md-6" >
                     <div id="carepdf" style="height:800px"></div>
                 </div>
             </div>
@@ -101,46 +93,6 @@
                     }
                 };
 
-                var url_age = getUrlParameter('age');
-                var url_weight = getUrlParameter('weight');
-
-                if (url_age)
-                {
-                    $('#age').text(url_age);
-                }
-                else
-                {
-                     $('#age').text(2);
-                }
-
-                if (url_weight)
-                {
-                    $('#weight').text(url_weight);
-                }
-                else
-                {
-                    $('#weight').text("");
-                }
-
-            $('#energy').text("3");
-            $('#tube').text("4");
-            $('#fluids').text("5");
-            $('#lorazepam').text("6");
-            $('#adrenaline').text("7");
-            $('#glucose').text("8");
-
-
-            $('#timer-start').click(function(){
-                $('#time').timer({
-                format: '%H:%M:%S'  //Display time as 00:00:00
-                });
-            });
-
-            $('#timer-stop').click(function(){
-                $('#time').timer('pause');
-            });
-
-
             function changeData(newUrl) {
                 if(!document.getElementById("carePdfObject"))
                     return false;
@@ -165,6 +117,38 @@
                 }
                 return current;
             }
+
+                var url_age = getUrlParameter('age');
+                var url_weight = getUrlParameter('weight');
+
+                if (url_age)
+                {
+                    $('#age').text(url_age);
+                }
+                else
+                {
+                     $('#age').text(2);
+                }
+
+                if (url_weight)
+                {
+                    $('#weight').text(url_weight);
+                }
+                else
+                {
+                    $('#weight').text("");
+                }
+
+
+            $('#timer-start').click(function(){
+                $('#time').timer({
+                format: '%H:%M:%S'  //Display time as 00:00:00
+                });
+            });
+
+            $('#timer-stop').click(function(){
+                $('#time').timer('pause');
+            });
 
             updateWETFLAG();
 
