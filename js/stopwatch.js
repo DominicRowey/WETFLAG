@@ -1,3 +1,5 @@
+// modified from https://github.com/NgocSang/Seminar
+
 class Stopwatch {
     constructor(display, results) {
         this.running = false;
@@ -9,7 +11,7 @@ class Stopwatch {
     }
     
     reset() {
-        this.times = [ 0, 0, 0];
+        this.times = [ 0, 0, 0, 0];
     }
     
     start() {
@@ -35,14 +37,22 @@ class Stopwatch {
         this.time = null;
     }
 
+ //   restart() {
+ //       if (!this.time) this.time = performance.now();
+  //      if (!this.running) {
+  //          this.running = true;
+  //          requestAnimationFrame(this.step.bind(this));
+  //      }
+  //      this.reset();
+  //  }
+
     restart() {
-        if (!this.time) this.time = performance.now();
-        if (!this.running) {
-            this.running = true;
-            requestAnimationFrame(this.step.bind(this));
-        }
+        this.running = false;
+        this.time = null;
         this.reset();
+        this.print();
     }
+
     
     clear() {
         clearChildren(this.results);
@@ -59,13 +69,18 @@ class Stopwatch {
     calculate(timestamp) {
         var diff = timestamp - this.time;
         // Hundredths of a second are 100 ms
-        this.times[2] += diff / 10;
+        this.times[3] += diff / 10;
         // Seconds are 100 hundredths of a second
-        if (this.times[2] >= 100) {
-            this.times[1] += 1;
-            this.times[2] -= 100;
+        if (this.times[3] >= 100) {
+            this.times[2] += 1;
+            this.times[3] -= 100;
         }
         // Minutes are 60 seconds
+        if (this.times[2] >= 60) {
+            this.times[1] += 1;
+            this.times[2] -= 60;
+        }
+        // Hours are 60 minutes
         if (this.times[1] >= 60) {
             this.times[0] += 1;
             this.times[1] -= 60;

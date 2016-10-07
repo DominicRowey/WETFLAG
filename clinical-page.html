@@ -11,17 +11,17 @@
                 <div class="col-md-6">
                     <div class="row step">
                         <div class="col-md-6">
-                          <span id="time">00:00:00</span>
-                          <!--<div class="stopwatch"></div>-->
+		                    <div class="stopwatch"></div>
+		                    <ul class="results"></ul>
                         </div>
 
                         <div class="col-md-6">
-                            <button class="btn btn-primary" id="timer-start" onClick="stopwatch.start();">Start</button>
-                            <button class="btn btn-primary" id="timer-stop"  onClick="stopwatch.stop();">Stop</button>
-                            <button class="btn btn-primary" id="timer-reset" onClick="stopwatch.restart();">Reset</button>
+                            <button class="btn btn-primary" id="start"  onClick="stopwatch.start();">Start</button>
+                            <button class="btn btn-primary" id="pause"   onClick="stopwatch.stop();" >Pause</button>
+                            <button class="btn btn-primary" id="restart"  onClick="stopwatch.restart();">Reset</button>
                         </div>
                     </div>
-
+<!--change-->
 
                     <div class="row step">
                         <div class="col-md-6">Age</div>
@@ -70,41 +70,32 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="js/timer.jquery.min.js"></script>
-        <!--<script src="timer2.js"></script>-->
+        <script src="js/stopwatch.js"></script>
         <script src="js/WetflagCalculations.js"></script>
         <script src="js/pdfobject.min.js"></script>
         <script>
                 // Taken on 01/10/2016 from
                 // http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
-
                 var getUrlParameter = function getUrlParameter(sParam) {
                     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                         sURLVariables = sPageURL.split('&'),
                         sParameterName,
                         i;
-
                     for (i = 0; i < sURLVariables.length; i++) {
                         sParameterName = sURLVariables[i].split('=');
-
                         if (sParameterName[0] === sParam) {
                             return sParameterName[1] === undefined ? true : sParameterName[1];
                         }
                     }
                 };
-
             function changeData(newUrl) {
                 if(!document.getElementById("carePdfObject"))
                     return false;
-
                 var pdfObject = document.getElementById("carePdfObject");
                 pdfObject.setAttribute('data', newUrl);
-
                 pdfObject.outerHTML.replace(/data="(.+?)"/, 'data="' + newUrl + '"');
-
                 //pdfObject.setAttribute('src', newUrl);
             }
-
             function closest(num, arr){
                 var current = arr[0]
                 for (i = 1; i < arr.length; i++) {
@@ -117,10 +108,8 @@
                 }
                 return current;
             }
-
                 var url_age = getUrlParameter('age');
                 var url_weight = getUrlParameter('weight');
-
                 if (url_age)
                 {
                     $('#age').text(url_age);
@@ -129,7 +118,6 @@
                 {
                      $('#age').text(2);
                 }
-
                 if (url_weight)
                 {
                     $('#weight').text(url_weight);
@@ -139,35 +127,16 @@
                     $('#weight').text("");
                 }
 
-
-            $('#timer-start').click(function(){
-                $('#time').timer({
-                format: '%H:%M:%S'  //Display time as 00:00:00
-                });
-            });
-
-            $('#timer-stop').click(function(){
-                $('#time').timer('pause');
-            });
-
             updateWETFLAG();
-
-
             var weight = document.getElementById("weight").textContent;
             var weightcategories =  [ "00000", "03500", "05000", "07500", "10000", "15000", "20000", "25000", "30000", "35000", "40000", "45000"];
             var chosenweight = closest(weight*1000, weightcategories);
-
             if (url_age == 0){
                 chosenweight = "00000"
             }
-
             var newUrl = "data/SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
             window.onload = changeData(newUrl);
-
-
             PDFObject.embed(newUrl, "#carepdf");
-
-
         </script>
     </body>
 </html>
