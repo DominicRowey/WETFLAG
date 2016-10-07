@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html>
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -5,22 +7,9 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div id="timer-bar" class="row">
-
-                <div class="col-md-5">
-                    <div class="row">
-                        <div class="col-md-6">
-                          Age <span id="age">unknown</span>
-                        </div>
-
-                        <div class="col-md-6">
-                            years
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-7">
-                    <div class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row step">
                         <div class="col-md-6">
 		                    <div class="stopwatch"></div>
 		                    <ul class="results"></ul>
@@ -32,11 +21,16 @@
                             <button class="btn btn-primary" id="restart"  onClick="stopwatch.restart();">Reset</button>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-5">
+
+                    <div class="row step">
+                        <div class="col-md-6">Age</div>
+                        <div class="col-md-6">
+                            <span id="age">unknown</span> Years
+                        </div>
+                    </div>
+
+
                     <div class="row step">
                         <div class="col-md-6">Weight</div>
                         <div class="col-md-6">
@@ -68,73 +62,40 @@
                         <div class="col-md-6"><span id="glucose">x</span> ml</div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <object data="data/SPARCsplit/00000g-wetflag.pdf" type="application/pdf" width="100%" height="100%" id="carepdf">
-                        <p> <a href="data/SPARCsplit/00000g-wetflag.pdf">Care PDF</a></p>
-                    </object>
+                <div class="col-md-6" >
+                    <div id="carepdf" style="height:800px"></div>
                 </div>
             </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <!--<script src="js/timer.jquery.min.js"></script>-->
         <script src="js/stopwatch.js"></script>
         <script src="js/WetflagCalculations.js"></script>
-
+        <script src="js/pdfobject.min.js"></script>
         <script>
                 // Taken on 01/10/2016 from
                 // http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
-
                 var getUrlParameter = function getUrlParameter(sParam) {
                     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                         sURLVariables = sPageURL.split('&'),
                         sParameterName,
                         i;
-
                     for (i = 0; i < sURLVariables.length; i++) {
                         sParameterName = sURLVariables[i].split('=');
-
                         if (sParameterName[0] === sParam) {
                             return sParameterName[1] === undefined ? true : sParameterName[1];
                         }
                     }
                 };
-
-                var url_age = getUrlParameter('age');
-                var url_weight = getUrlParameter('weight');
-
-                if (url_age)
-                {
-                    $('#age').text(url_age);
-                }
-                else
-                {
-                     $('#age').text(2);
-                }
-
-                if (url_weight)
-                {
-                    $('#weight').text(url_weight);
-                }
-                else
-                {
-                    $('#weight').text("");
-                }
-
-            $('#energy').text("3");
-            $('#tube').text("4");
-            $('#fluids').text("5");
-            $('#lorazepam').text("6");
-            $('#adrenaline').text("7");
-            $('#glucose').text("8");
-
-            function changeData(newURL) {
-                if(!document.getElementById("carepdf"))
+            function changeData(newUrl) {
+                if(!document.getElementById("carePdfObject"))
                     return false;
-                document.getElementById("carepdf").setAttribute('data', newURL);
+                var pdfObject = document.getElementById("carePdfObject");
+                pdfObject.setAttribute('data', newUrl);
+                pdfObject.outerHTML.replace(/data="(.+?)"/, 'data="' + newUrl + '"');
+                //pdfObject.setAttribute('src', newUrl);
             }
-
             function closest(num, arr){
                 var current = arr[0]
                 for (i = 1; i < arr.length; i++) {
@@ -147,14 +108,35 @@
                 }
                 return current;
             }
+                var url_age = getUrlParameter('age');
+                var url_weight = getUrlParameter('weight');
+                if (url_age)
+                {
+                    $('#age').text(url_age);
+                }
+                else
+                {
+                     $('#age').text(2);
+                }
+                if (url_weight)
+                {
+                    $('#weight').text(url_weight);
+                }
+                else
+                {
+                    $('#weight').text("");
+                }
 
             updateWETFLAG();
             var weight = document.getElementById("weight").textContent;
             var weightcategories =  [ "00000", "03500", "05000", "07500", "10000", "15000", "20000", "25000", "30000", "35000", "40000", "45000"];
             var chosenweight = closest(weight*1000, weightcategories);
-            var newURL = "data/SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
-            changeData(newURL);
-
+            if (url_age == 0){
+                chosenweight = "00000"
+            }
+            var newUrl = "data/SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
+            window.onload = changeData(newUrl);
+            PDFObject.embed(newUrl, "#carepdf");
         </script>
     </body>
 </html>
