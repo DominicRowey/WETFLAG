@@ -1,116 +1,43 @@
-// modified from https://github.com/NgocSang/Seminar
+// Adapted from https://jsfiddle.net/pertrai1/r3su6b6n/
 
-class Stopwatch {
-    constructor(display, results) {
-        this.running = false;
-        this.display = display;
-        this.results = results;
-        this.laps = [];
-        this.reset();
-        this.print(this.times);
-    }
-    
-    reset() {
-        this.times = [ 0, 0, 0, 0];
-    }
-    
-    start() {
-        if (!this.time) this.time = performance.now();
-        if (!this.running) {
-            this.running = true;
-            requestAnimationFrame(this.step.bind(this));
-        }
-    }
-    
-    lap() {
-        let times = this.times;
-        if (this.running) {
-            this.reset();
-        }
-        let li = document.createElement('li');
-        li.innerText = this.format(times);
-        this.results.appendChild(li);
-    }
-    
-    stop() {
-        this.running = false;
-        this.time = null;
-    }
+var h1 = document.getElementById('timer');
+var start = document.getElementById('start');
+var stop = document.getElementById('pause');
+var reset = document.getElementById('restart');
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
+var t;
 
- //   restart() {
- //       if (!this.time) this.time = performance.now();
-  //      if (!this.running) {
-  //          this.running = true;
-  //          requestAnimationFrame(this.step.bind(this));
-  //      }
-  //      this.reset();
-  //  }
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    } 
+    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
-    restart() {
-        this.running = false;
-        this.time = null;
-        this.reset();
-        this.print();
-    }
-
-    
-    clear() {
-        clearChildren(this.results);
-    }
-    
-    step(timestamp) {
-        if (!this.running) return;
-        this.calculate(timestamp);
-        this.time = timestamp;
-        this.print();
-        requestAnimationFrame(this.step.bind(this));
-    }
-    
-    calculate(timestamp) {
-        var diff = timestamp - this.time;
-        // Hundredths of a second are 100 ms
-        this.times[3] += diff / 10;
-        // Seconds are 100 hundredths of a second
-        if (this.times[3] >= 100) {
-            this.times[2] += 1;
-            this.times[3] -= 100;
-        }
-        // Minutes are 60 seconds
-        if (this.times[2] >= 60) {
-            this.times[1] += 1;
-            this.times[2] -= 60;
-        }
-        // Hours are 60 minutes
-        if (this.times[1] >= 60) {
-            this.times[0] += 1;
-            this.times[1] -= 60;
-        }
-    }
-    
-    print() {
-        this.display.innerText = this.format(this.times);
-    }
-    
-    format(times) {
-        return `\
-${pad0(times[0], 2)}:\
-${pad0(times[1], 2)}:\
-${pad0(Math.floor(times[2]), 2)}`;
-    }
+    timer();
 }
 
-function pad0(value, count) {
-    var result = value.toString();
-    for (; result.length < count; --count)
-        result = '0' + result;
-    return result;
+function timer() {
+    t = setTimeout(add, 1000);
 }
 
-function clearChildren(node) {
-    while (node.lastChild)
-        node.removeChild(node.lastChild);
+// Start button 
+start.onclick = timer;
+
+//Stop button
+stop.onclick = function() {
+    clearTimeout(t);
 }
 
-let stopwatch = new Stopwatch(
-    document.querySelector('.stopwatch'),
-    document.querySelector('.results'));
+// Clear button
+reset.onclick = function() {
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+}
