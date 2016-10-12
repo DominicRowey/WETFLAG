@@ -11,17 +11,32 @@
                 <div class="col-md-6">
                     <div class="row step">
                         <div class="col-md-6">
+                            <!--
 		                    <div class="stopwatch"></div>
 		                    <ul class="results"></ul>
+
+                            -->
+
+                            <h1 id ="timer"><time>00:00:00</time></h1>
+
+
                         </div>
 
                         <div class="col-md-6">
+
+                            <!--
                             <button class="btn btn-primary" id="start"  onClick="stopwatch.start();">Start</button>
                             <button class="btn btn-primary" id="pause"   onClick="stopwatch.stop();" >Pause</button>
                             <button class="btn btn-primary" id="restart"  onClick="stopwatch.restart();">Reset</button>
+                            -->
+
+                            <button class="btn btn-primary" id="start">Start</button>
+                            <button class="btn btn-primary" id="pause">Pause</button>
+                            <button class="btn btn-primary" id="restart">Reset</button>
+
+
                         </div>
                     </div>
-<!--change-->
 
                     <div class="row step">
                         <div class="col-md-6">Age</div>
@@ -70,7 +85,7 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="js/stopwatch.js"></script>
+        <!-- <script src="js/stopwatch.js"> -->
         <script src="js/WetflagCalculations.js"></script>
         <script src="js/pdfobject.min.js"></script>
         <script>
@@ -96,6 +111,7 @@
                 pdfObject.outerHTML.replace(/data="(.+?)"/, 'data="' + newUrl + '"');
                 //pdfObject.setAttribute('src', newUrl);
             }
+
             function closest(num, arr){
                 var current = arr[0]
                 for (i = 1; i < arr.length; i++) {
@@ -108,32 +124,81 @@
                 }
                 return current;
             }
-                var url_age = getUrlParameter('age');
-                var url_weight = getUrlParameter('weight');
-                if (url_age)
-                {
-                    $('#age').text(url_age);
-                }
-                else
-                {
-                     $('#age').text(2);
-                }
-                if (url_weight)
-                {
-                    $('#weight').text(url_weight);
-                }
-                else
-                {
-                    $('#weight').text("");
-                }
+
+            var url_age = getUrlParameter('age');
+            var url_weight = getUrlParameter('weight');
+            if (url_age)
+            {
+                $('#age').text(url_age);
+            }
+            else
+            {
+                $('#age').text(2);
+            }
+            if (url_weight)
+            {
+                $('#weight').text(url_weight);
+            }
+            else
+            {
+                $('#weight').text("");
+            }
 
             updateWETFLAG();
+
             var weight = document.getElementById("weight").textContent;
             var weightcategories =  [ "03500", "05000", "07500", "10000", "15000", "20000", "25000", "30000", "35000", "40000", "45000"];
             var chosenweight = closest(weight*1000, weightcategories);
             var newUrl = "data/SPARCsplit/"+ chosenweight + "g-wetflag.pdf";
             window.onload = changeData(newUrl);
             PDFObject.embed(newUrl, "#carepdf");
+
+
+            // Adapted from https://jsfiddle.net/pertrai1/r3su6b6n/
+
+var h1 = document.getElementById('timer');
+var start = document.getElementById('start');
+var stop = document.getElementById('pause');
+var reset = document.getElementById('restart');
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
+var t;
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    } 
+    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+    timer();
+}
+
+function timer() {
+    t = setTimeout(add, 1000);
+}
+
+/* Start button */
+start.onclick = timer;
+
+/* Stop button */
+stop.onclick = function() {
+    clearTimeout(t);
+}
+
+/* Clear button */
+reset.onclick = function() {
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+}
+
+
         </script>
     </body>
 </html>
